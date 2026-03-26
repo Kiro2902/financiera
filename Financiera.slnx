@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/Business Layer/">
+    <Project Path="Financiera.BusinessLogic/Financiera.BusinessLogic.csproj" />
+    <Project Path="Financiera.Entities/Financiera.Entities.csproj" />
+    <Project Path="Financiera.WebAPI/Financiera.WebAPI.csproj" />
+  </Folder>
+  <Folder Name="/Data Layer/">
+    <Project Path="Financiera.Data/Financiera.Data.csproj" />
+  </Folder>
+  <Folder Name="/Presentation Layer/">
+    <Project Path="Financiera.AppWeb/Financiera.AppWeb.csproj" />
+  </Folder>
+</Solution>
