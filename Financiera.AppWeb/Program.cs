@@ -1,7 +1,12 @@
+using Financiera.BusinessLogic;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//INYECTAR DEPENDENCIAS
+builder.Services.Inyeccion();
 
 var app = builder.Build();
 

@@ -64,7 +64,14 @@ namespace Financiera.Data.Repositories
         {
             return new Cliente
             {
-
+                ID = reader.GetInt32(0),
+                Apellidos = reader.GetString(1),
+                Nombres = reader.GetString(2),
+                Direccion = reader.GetString(3),
+                Telefono = reader.GetString(4),
+                Email = reader.GetString(5),
+                TipoClienteID = reader.GetInt32(6),
+                Activo = reader.GetBoolean(7)
             };
         }
 
