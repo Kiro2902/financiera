@@ -1,4 +1,5 @@
 ﻿using Financiera.AppWeb.Models;
+using Financiera.AppWeb.Models.Extensions;
 using Financiera.BusinessLogic;
 using Financiera.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -15,15 +16,7 @@ namespace Financiera.AppWeb.Controllers
         }
         public IActionResult Index()
         {
-            var clientes = services.ListarClientes().Select(x => new ClienteVM
-            {
-                ID = x.ID,
-                Nombres = $"{x.Apellidos}, {x.Nombres}",
-                Direccion = x.Direccion,
-                Email = x.Email,
-                Telefono = x.Telefono,
-                TipoClienteID = x.TipoClienteID
-            }).ToList();
+            var clientes = services.ListarClientes().Select(x => x.toViewModel()).ToList();
             foreach(var item in clientes)
             {
                 item.TipoCliente = services.ObtenerTipoClientePorID(item.TipoClienteID).Nombre;
@@ -31,18 +24,18 @@ namespace Financiera.AppWeb.Controllers
             return View(clientes);
         }
 
-        public IActionResult Details()
+        public IActionResult Details(int id)
         {
-            var clientes = services.ObtenerClientePorID().Select(x => ClienteVM
-            {
-                ID = x.ID,
-                Nombres = $"{x.Apellidos}, {x.Nombres}",
-                Direccion = x.Direccion,
-                Email = x.Email,
-                Telefono = x.Telefono,
-                TipoClienteID = x.TipoClienteID
-            }).ToList();
-            return View(clientes);
+            var cliente = services.ObtenerClientePorID(id).toViewModel();
+            cliente.TipoCliente = services.ObtenerTipoClientePorID(cliente.TipoClienteID).Nombre;
+
+            return View(cliente);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var cliente = services.ObtenerClientePorID(id).toViewModel();
+            return View(cliente);
         }
     }
 }

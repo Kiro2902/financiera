@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 //INYECTAR DEPENDENCIAS
-builder.Services.Inyeccion();
+builder.Services.Inyeccion(); // Método de extension
 
 var app = builder.Build();
 
